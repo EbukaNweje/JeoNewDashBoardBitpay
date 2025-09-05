@@ -64,7 +64,7 @@ const Signup = () => {
     setLoading(true);
     const SendAdmin = async () => {
       const url =
-        "https://mybrokerbackend.onrender.com/api/registrationSuccessfulEmail";
+        "https://new-joe-back2025.vercel.app/api/registrationSuccessfulEmail";
       const FormData = {
         email: data.email,
       };
