@@ -89,9 +89,23 @@ const Deposit = () => {
       <div className="w-[60%] phone:w-full h-max flex flex-col gap-2">
         <div
           className="w-max h-max flex items-center gap-2 text-lg cursor-pointer"
-          onClick={() => Nav(-1)}
+          onClick={() => {
+            if (window.history.state && window.history.state.idx > 0) {
+              navigate(-1);
+            } else {
+              navigate("/dashboard"); // fallback
+            }
+          }}
         >
-          <FaArrowLeftLong onClick={() => Nav(-1)} />
+          <FaArrowLeftLong
+            onClick={() => {
+              if (window.history.state && window.history.state.idx > 0) {
+                navigate(-1);
+              } else {
+                navigate("/dashboard"); // fallback
+              }
+            }}
+          />
           <p>Back to plan</p>
         </div>
         <p className="text-4xl font-semibold text-[#364a63]">

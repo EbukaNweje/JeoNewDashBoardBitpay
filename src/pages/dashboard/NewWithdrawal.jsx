@@ -1,5 +1,5 @@
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -12,7 +12,7 @@ import { ClipLoader } from "react-spinners";
 import Swal from "sweetalert2";
 
 const NewWithdrawal = () => {
-  const Nav = useNavigate();
+  const navigate = useNavigate();
   const [amount, setAmount] = useState(0.0);
   const [wallet, setWallet] = useState("");
   const [loading, setLoading] = useState("loading...");
@@ -147,14 +147,21 @@ const NewWithdrawal = () => {
     });
   };
 
+  const handleBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate("/dashboard"); // fallback
+    }
+  };
   return (
     <div className="w-full h-max flex bg-[#f5f6fa] px-48 phone:gap-6 phone:px-6 phone:flex-col py-4">
       <div className="w-[60%] phone:w-full h-max flex flex-col gap-2">
         <div
           className="w-max h-max flex items-center gap-2 text-lg cursor-pointer"
-          onClick={() => Nav("dashboard")}
+          onClick={handleBack}
         >
-          <FaArrowLeftLong onClick={() => Nav("dashboard")} />
+          <FaArrowLeftLong onClick={handleBack} />
           <p>History</p>
         </div>
         <p className="text-4xl font-semibold text-[#364a63]">
